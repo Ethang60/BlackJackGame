@@ -23,37 +23,38 @@ public class Main {
             Card dealerCard1 = genNewCard();
             Card dealerCard2 = genNewCard();
             Hand dealerHand = new Hand();
-            dealerHand.setCardOne(dealerCard1.getCardValue());
-            dealerHand.setCardTwo(dealerCard2.getCardValue());
-            dealerHand.setHandTotal(dealerHand.getCardOne()+dealerHand.getCardTwo());
+            dealerHand.cardsInHand.add(dealerCard1.getCardValue());
+            dealerHand.cardsInHand.add(dealerCard2.getCardValue());
+            dealerHand.setHandTotal(dealerHand.cardsInHand.get(0)+dealerHand.cardsInHand.get(1));
 
             Card playerCard1 = genNewCard();
             Card playerCard2 = genNewCard();
             Hand playerHand = new Hand();
-            playerHand.setCardOne(playerCard1.getCardValue());
-            playerHand.setCardTwo(playerCard2.getCardValue());
-            playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
+            playerHand.cardsInHand.add(playerCard1.getCardValue());
+            playerHand.cardsInHand.add(playerCard2.getCardValue());
+            playerHand.setHandTotal(playerHand.cardsInHand.get(0)+playerHand.cardsInHand.get(1));
 
-            System.out.println("First Player Card is " + playerHand.getCardOne());
-            if (playerHand.getCardOne() == 1) {
-                System.out.println("Do you want ace to equal 1 or 11?");
+            System.out.println("Player Card Number 1 is " + playerHand.cardsInHand.get(0));
+            System.out.println("Player Card Number 2 is " + playerHand.cardsInHand.get(1));
+
+            if (playerHand.cardsInHand.get(0) == 1) {
+                System.out.println("Do You Want Card 1 Ace To Equal 1 or 11?");
                 Scanner input = new Scanner(System.in);
                 int answer = input.nextInt();
-                playerHand.setCardOne(answer);
-                playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
+                playerHand.cardsInHand.set(0,answer);
+                playerHand.setHandTotal(playerHand.cardsInHand.get(0)+playerHand.cardsInHand.get(1));
 
             }
-            System.out.println("Second Player Card is " + playerHand.getCardTwo());
-            if (playerHand.getCardTwo() == 1) {
-                System.out.println("Do you want ace to equal 1 or 11?");
+            if (playerHand.cardsInHand.get(1) == 1) {
+                System.out.println("Do You Want Card 2 Ace To Equal 1 or 11?");
                 Scanner input = new Scanner(System.in);
                 int answer = input.nextInt();
-                playerHand.setCardTwo(answer);
-                playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
+                playerHand.cardsInHand.set(1,answer);
+                playerHand.setHandTotal(playerHand.cardsInHand.get(0)+playerHand.cardsInHand.get(1));
 
             }
-            playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
-            System.out.println("Visible Dealer Card = " + dealerHand.getCardOne());
+            playerHand.setHandTotal(playerHand.cardsInHand.get(0)+playerHand.cardsInHand.get(1));
+            System.out.println("Visible Dealer Card = " + dealerHand.cardsInHand.get(0));
 //        System.out.println("DealerTotal(FOR TEST) = " + dealerTotal);
 
             System.out.println("Player Total = " + playerHand.getHandTotal());
@@ -65,7 +66,13 @@ public class Main {
                 String answer = input.nextLine();
                 while (playerHand.getHandTotal() < 22 && answer.equalsIgnoreCase("HIT"))  {
                     Card playerCardNext = genNewCard();
-                    playerHand.setHandTotal(playerHand.getHandTotal() + playerCardNext.getCardValue());
+                    playerHand.cardsInHand.add(playerCardNext.getCardValue());
+                    System.out.println("Card Number " + playerHand.cardsInHand.size() + " is "+playerCardNext.getCardValue());
+                    Integer sum = 0;
+                    for (Integer d : playerHand.cardsInHand) {
+                        sum += d;
+                    }
+                    playerHand.handTotal = sum;
                     System.out.println("Player Total = " + playerHand.getHandTotal());
                     if (playerHand.getHandTotal() > 21) {
                         System.out.println("BUST!");
@@ -73,6 +80,9 @@ public class Main {
                         System.out.println("Hit or Stick? ");
                         answer = input.nextLine();
                     }
+                    if (playerHand.cardsInHand.size() == 5) {
+                        System.out.println("5 Cards In Hand");
+                        break;}
                 }
             }
 
