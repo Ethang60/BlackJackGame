@@ -31,24 +31,25 @@ public class Main {
             Card playerCard2 = genNewCard();
             Hand playerHand = new Hand();
             playerHand.setCardOne(playerCard1.getCardValue());
+            playerHand.setCardOne(1); /////FOR TEST//////////
             playerHand.setCardTwo(playerCard2.getCardValue());
             playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
 
             System.out.println("First Player Card is " + playerHand.getCardOne());
-            if (playerCard1.getCardValue() == 1) {
+            if (playerHand.getCardOne() == 1) {
                 System.out.println("Do you want ace to equal 1 or 11?");
                 Scanner input = new Scanner(System.in);
                 int answer = input.nextInt();
-                playerCard1.setCardValue(answer);
+                playerHand.setCardOne(answer);
                 playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
 
             }
             System.out.println("Second Player Card is " + playerHand.getCardTwo());
-            if (playerCard2.getCardValue() == 1) {
+            if (playerHand.getCardTwo() == 1) {
                 System.out.println("Do you want ace to equal 1 or 11?");
                 Scanner input = new Scanner(System.in);
                 int answer = input.nextInt();
-                playerCard2.setCardValue(answer);
+                playerHand.setCardTwo(answer);
                 playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
 
             }
