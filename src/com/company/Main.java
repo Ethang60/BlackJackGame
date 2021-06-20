@@ -103,7 +103,7 @@ public class Main {
                 System.out.println("WINNER");
             }
             if (dealerBust != 1 && playerHand.getHandTotal() < dealerHand.getHandTotal()) {
-                System.out.println("Bigger Looser Than Leon");
+                System.out.println("You're a Bigger Looser Than Leon");
             }
             if (playerHand.getHandTotal() == dealerHand.getHandTotal()) {
                 System.out.println("Draw");
