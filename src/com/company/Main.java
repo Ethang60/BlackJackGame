@@ -31,7 +31,6 @@ public class Main {
             Card playerCard2 = genNewCard();
             Hand playerHand = new Hand();
             playerHand.setCardOne(playerCard1.getCardValue());
-            playerHand.setCardOne(1); /////FOR TEST//////////
             playerHand.setCardTwo(playerCard2.getCardValue());
             playerHand.setHandTotal(playerHand.getCardOne()+playerHand.getCardTwo());
 
